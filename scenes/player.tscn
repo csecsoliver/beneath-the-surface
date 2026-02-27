@@ -286,6 +286,7 @@ script = ExtResource("1_m3dpg")
 shape = SubResource("CircleShape2D_smehm")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=286472016]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_qfm1y")
 animation = &"up"
 

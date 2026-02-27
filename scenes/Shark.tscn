@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://yo42itcb456t"]
+
+[ext_resource type="Texture2D" uid="uid://c4lbjk2mxl6ge" path="res://sprites/shark/Shark-Sheet.png" id="1_2066b"]
+[ext_resource type="Script" uid="uid://bdl6omg2h6sc2" path="res://scripts/shark.gd" id="1_pd6do"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pd6do"]
+radius = 7.0
+height = 25.999998
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd6do"]
+atlas = ExtResource("1_2066b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce7j4"]
+atlas = ExtResource("1_2066b")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4sij"]
+atlas = ExtResource("1_2066b")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnmtu"]
+atlas = ExtResource("1_2066b")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojk2p"]
+atlas = ExtResource("1_2066b")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6lyo"]
+atlas = ExtResource("1_2066b")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwreq"]
+atlas = ExtResource("1_2066b")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpd7h"]
+atlas = ExtResource("1_2066b")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r22x4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd6do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce7j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4sij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnmtu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojk2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6lyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwreq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpd7h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shark" type="Node2D" unique_id=14928866]
+script = ExtResource("1_pd6do")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1017520103]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1396178069]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pd6do")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1230974641]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_r22x4")

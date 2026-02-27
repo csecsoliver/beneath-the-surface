@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dnybocqsi3s7q"]
+
+[ext_resource type="Texture2D" uid="uid://dsfafcv5favua" path="res://sprites/test.png" id="1_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://dktvi1bx58n01" path="res://sprites/bg-2/far.png" id="2_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://dk1pobirco1e1" path="res://sprites/bg-2/sand.png" id="3_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://b3u0imq75dknw" path="res://sprites/bg-2/foregound-merged.png" id="4_muem4"]
+[ext_resource type="Texture2D" uid="uid://dmrrnkofq8orj" path="res://sprites/bg/Midground/Ocean0.png" id="5_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://cajfxljxrs3oq" path="res://sprites/bg/Midground/Ocean2.png" id="6_0ld40"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ig7tw"]
+texture = ExtResource("1_a8y0u")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0xm2m"]
+sources/0 = SubResource("TileSetAtlasSource_ig7tw")
+
+[node name="Node2D" type="Node2D" unique_id=1852961584]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1106363075]
+tile_set = SubResource("TileSet_0xm2m")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=877908065]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=219936023]
+motion_mirroring = Vector2(256, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1463499312]
+texture = ExtResource("2_jkv2x")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1506527495]
+motion_mirroring = Vector2(256, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3" unique_id=1924809346]
+texture = ExtResource("3_jbj1t")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1882222688]
+motion_mirroring = Vector2(512, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" unique_id=539596467]
+texture = ExtResource("4_muem4")
+centered = false
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="." unique_id=239875395]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=487280026]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer" unique_id=18921483]
+texture = ExtResource("5_dp3eg")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2" unique_id=696068656]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer2" unique_id=252841261]
+position = Vector2(1, 480)
+texture = ExtResource("6_0ld40")
+centered = false

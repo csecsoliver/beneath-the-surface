@@ -5,6 +5,6 @@ Kitérők, amivel tudsz extra levegőt venni, ami időveszteség, meg kell fonto
 
 use oxygen tank as booster (boosts the opposite diretion the player is looking)
 
-random oxygen
+random oxygen bubbles in weird places
 
 trident to collect fish. cooldown.

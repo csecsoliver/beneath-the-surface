@@ -1,0 +1,24 @@
+[Unit]
+Description=Leaderboard Server
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/leaderboard
+Environment="PATH=/opt/leaderboard/venv/bin"
+ExecStart=/opt/leaderboard/venv/bin/gunicorn --workers 2 --threads 2 --bind 127.0.0.1:5000 --timeout 30 app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=10
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/leaderboard /var/log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Test for Leaderboard</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eee;
+        }
+        button {
+            background: #16213e;
+            color: #0f3460;
+            border: 1px solid #0f3460;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            color: #e94560;
+        }
+        button:hover { background: #0f3460; }
+        #result {
+            background: #16213e;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+    </style>
+</head>
+<body>
+    <h1>🐟 Leaderboard CORS Test</h1>
+    <p>Test from any origin (including local file://)</p>
+
+    <button onclick="testHealth()">Health Check</button>
+    <button onclick="testGetScores()">Get Scores</button>
+    <button onclick="testSubmitScore()">Submit Score</button>
+    <button onclick="clearResult()">Clear</button>
+
+    <div id="result"></div>
+
+    <script>
+        const API_URL = "https://save.temp.olio.ovh";
+        const SECRET = "underwater_";
+
+        function log(msg, type = '') {
+            const result = document.getElementById('result');
+            const prefix = type === 'success' ? '✅ ' : type === 'error' ? '❌ ' : 'ℹ️ ';
+            result.innerHTML += `<span class="${type}">${prefix}${msg}</span>\n`;
+            result.scrollTop = result.scrollHeight;
+        }
+
+        function clearResult() {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        async function testHealth() {
+            log(`Testing health check...`);
+            try {
+                const res = await fetch(`${API_URL}/health`);
+                const data = await res.json();
+                log(`Health OK: ${JSON.stringify(data, null, 2)}`, 'success');
+            } catch (e) {
+                log(`Health failed: ${e.message}`, 'error');
+            }
+        }
+
+        async function testGetScores() {
+            log(`Fetching scores...`);
+            try {
+                const res = await fetch(`${API_URL}/scores?limit=5`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                const data = await res.json();
+                log(`Scores (${data.length}):\n${JSON.stringify(data, null, 2)}`, 'success');
+            } catch (e) {
+                log(`Get scores failed: ${e.message}`, 'error');
+            }
+        }
+
+        async function testSubmitScore() {
+            log(`Submitting test score...`);
+            try {
+                const scoreData = { name: 'WebTest', time: Math.random() * 100 };
+                const jsonStr = JSON.stringify(scoreData);
+                const obscured = btoa(SECRET + jsonStr);
+
+                const res = await fetch(`${API_URL}/submit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({ data: obscured })
+                });
+                const data = await res.json();
+                log(`Score submitted! Rank: ${data.rank}\n${JSON.stringify(data, null, 2)}`, 'success');
+            } catch (e) {
+                log(`Submit failed: ${e.message}`, 'error');
+            }
+        }
+
+        // Auto-run health check on load
+        window.onload = () => log('CORS Test Ready - API: ' + API_URL);
+    </script>
+</body>
+</html>

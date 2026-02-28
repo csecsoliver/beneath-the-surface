@@ -1,0 +1,49 @@
+save.temp.olio.ovh {
+    # Handle OPTIONS preflight requests
+    @options method OPTIONS
+    respond @options `{"status": 200}` {
+        header Access-Control-Allow-Origin "*"
+        header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        header Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        header Access-Control-Max-Age "86400"
+        close
+    }
+
+    reverse_proxy 127.0.0.1:5000
+
+    # CORS headers for all responses
+    header {
+        # Disable server header
+        -Server
+
+        # CORS for itch.io, web builds, etc.
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        Access-Control-Expose-Headers "Content-Length, Content-Type"
+        Access-Control-Max-Age "86400"
+
+        # Security headers (keep it light for compatibility)
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+    }
+
+    # Logging
+    log {
+        output file /var/log/caddy/leaderboard.log
+        format single_field common_log
+    }
+
+    # Timeouts for slow connections
+    reverse_proxy {
+        header_up Host {upstream_hostport}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+        transport http {
+            read_timeout 30s
+            write_timeout 30s
+            dial_timeout 10s
+        }
+    }
+}

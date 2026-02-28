@@ -292,6 +292,10 @@ unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_qfm1y")
 animation = &"up"
 
+[node name="Trident" parent="PlayerSprite" unique_id=1359295957 instance=ExtResource("2_y4r1p")]
+rotation = 0.24609143
+scale = Vector2(1.5, 1.5)
+
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1110791031]
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true

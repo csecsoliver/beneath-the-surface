@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@export var AIR: int = 10;
+@export var max_air_timer: int = 10;
+@export var max_trident_timer: int = 10;
+var can_trident = true
 
 const SPEED = 10.0
 const MAX_SPEED = 200.0 # sideways. double of terminal velocity
@@ -7,6 +11,10 @@ const JUMP_VELOCITY = -150.0
 const GRAVITY = 300.0
 
 var mouse_held: bool = true
+var air_timer: float = 0;
+var trident_timer: float = 0;
+
+signal lose_air(air) # amúgy ez bármilyen levegőváltozás, nem csak lose
 
 func _process(delta: float) -> void:
 	# animations
@@ -27,10 +35,29 @@ func _process(delta: float) -> void:
 		%PlayerSprite.flip_h = false
 	
 	# shooting trident
-	if Input.is_action_just_pressed("mb1"):
+	if Input.is_action_just_pressed("mb1") and can_trident:
 		mouse_held = true
-	if Input.is_action_just_released("mb1"):
+	if Input.is_action_just_released("mb1") and can_trident:
+		mouse_held = false
 		shoot()
+		can_trident = false
+		$PlayerSprite/Trident.visible = false
+		trident_timer = 0
+	
+	# doing timer stuff
+	air_timer += delta
+	if !can_trident: trident_timer += delta
+	
+	if air_timer > max_air_timer/10:
+		AIR-=1
+		if AIR == 0:
+			print("death")
+			AIR = 10
+		lose_air.emit(AIR)
+		air_timer -= max_air_timer/10
+	if trident_timer > max_trident_timer:
+		can_trident = true
+		$PlayerSprite/Trident.visible = true
 
 func _physics_process(delta: float) -> void:
 	# handle gravity with low terminal velocity

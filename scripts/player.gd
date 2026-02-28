@@ -115,13 +115,11 @@ func _physics_process(delta: float) -> void:
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.get_collider().get_parent().has_meta("shark"):
-			AIR = 0
-			lose_air.emit(AIR)
-		#if collision.get_collider().has_meta("bubble"):
-			#print("air")
-			#AIR += 5
-			#lose_air.emit(AIR)
+		var node = collision.get_collider()
+		if node != null:
+			if node.get_parent().has_meta("shark"):
+				AIR = 0
+				lose_air.emit(AIR)
 		var normal = collision.get_normal()
 		if abs(normal.x) > 0.5:
 			if normal.x > 0 and Input.is_action_just_pressed("move_kick"):

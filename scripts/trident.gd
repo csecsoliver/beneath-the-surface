@@ -29,7 +29,6 @@ func _physics_process(_delta: float) -> void:
 	for i in char.get_slide_collision_count():
 		var collision = char.get_slide_collision(i)
 		if collision.get_collider().get_parent().has_meta("shark"):
-			print("shark")
 			collision.get_collider().get_parent().queue_free()
 		if collision.get_collider() is TileMapLayer:
 			self.queue_free()

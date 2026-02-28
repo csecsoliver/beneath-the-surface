@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="3_odhdn"]
 [ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="4_lrl65"]
 [ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="6_76388"]
+[ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="7_svatc"]
 
 [sub_resource type="GDScript" id="GDScript_76388"]
 script/source = "extends Area2D
@@ -74,5 +75,8 @@ script = ExtResource("4_lrl65")
 [node name="Shark" parent="two point path shark/PathFollow2D" unique_id=14928866 instance=ExtResource("3_dw26h")]
 position = Vector2(-0.0791589, -0.32279348)
 scale = Vector2(-1, 1)
+
+[node name="Bubble" parent="." unique_id=1362069736 instance=ExtResource("7_svatc")]
+position = Vector2(1244, 485)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="4_thei6"]
 [ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="5_iw2mh"]
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="6_opw0y"]
-[ext_resource type="PackedScene" uid="uid://cm3hdiuobgrry" path="res://scenes/Bubble.tscn" id="7_3iwpl"]
+[ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="7_3iwpl"]
 
 [sub_resource type="GDScript" id="GDScript_g7sqe"]
 script/source = "extends Area2D
@@ -33,7 +33,7 @@ radius = 25.847391
 
 [sub_resource type="Curve2D" id="Curve2D_1fmh2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -79.72845, -4.0630417, 0.5818939, 0.2958603, -0.5818939, -0.2958603, 294.3717, -3, 0, 0, 0, 0, -79.72845, -4.0630417)
+"points": PackedVector2Array(0, 0, 0, 0, -79.72845, -4.0630417, 0.5818939, 0.2958603, -0.5818939, -0.2958603, 341.94702, -5, 0, 0, 0, 0, -79.72845, -4.0630417)
 }
 point_count = 3
 
@@ -72,7 +72,7 @@ script = ExtResource("4_thei6")
 [node name="Shark" parent="two point path shark/PathFollow2D" unique_id=14928866 instance=ExtResource("5_iw2mh")]
 position = Vector2(-0.0791589, -0.32279348)
 scale = Vector2(-1, 1)
-seconds = 5
+seconds = 7
 
 [node name="two point path shark2" type="Path2D" parent="." unique_id=1166384401]
 position = Vector2(1480, 473)
@@ -88,10 +88,10 @@ script = ExtResource("4_thei6")
 [node name="Shark" parent="two point path shark2/PathFollow2D" unique_id=907085484 instance=ExtResource("5_iw2mh")]
 position = Vector2(-0.0791589, -0.32279348)
 scale = Vector2(-1, 1)
-seconds = 5
+seconds = 7
 
 [node name="two point path shark3" type="Path2D" parent="." unique_id=653797095]
-position = Vector2(2325, 565)
+position = Vector2(2219, 562)
 scale = Vector2(1.0089285, 1)
 curve = SubResource("Curve2D_1fmh2")
 
@@ -104,7 +104,23 @@ script = ExtResource("4_thei6")
 [node name="Shark" parent="two point path shark3/PathFollow2D" unique_id=1318661414 instance=ExtResource("5_iw2mh")]
 position = Vector2(-0.0791589, -0.32279348)
 scale = Vector2(-1, 1)
-seconds = 5
+seconds = 7
+
+[node name="two point path shark7" type="Path2D" parent="." unique_id=599989408]
+position = Vector2(2943, 617)
+scale = Vector2(1.0089285, 1)
+curve = SubResource("Curve2D_1fmh2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="two point path shark7" unique_id=1722813048]
+position = Vector2(-79.72845, -4.0630417)
+rotation = 0.0018026861
+rotates = false
+script = ExtResource("4_thei6")
+
+[node name="Shark" parent="two point path shark7/PathFollow2D" unique_id=75268524 instance=ExtResource("5_iw2mh")]
+position = Vector2(-0.0791589, -0.32279348)
+scale = Vector2(-1, 1)
+seconds = 7
 
 [node name="two point path shark4" type="Path2D" parent="." unique_id=1138280399]
 position = Vector2(3001, 150)
@@ -123,8 +139,8 @@ scale = Vector2(-1, 1)
 seconds = 5
 
 [node name="two point path shark6" type="Path2D" parent="." unique_id=1467776810]
-position = Vector2(2444, 40)
-scale = Vector2(1.0089285, 1)
+position = Vector2(2346, 45)
+scale = Vector2(1.3493794, 1)
 curve = SubResource("Curve2D_1fmh2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="two point path shark6" unique_id=345865912]
@@ -171,16 +187,22 @@ position = Vector2(1931, 457)
 circle = true
 seconds = 7
 
-[node name="Bubble" parent="." unique_id=597424633 instance=ExtResource("7_3iwpl")]
-position = Vector2(1025, 301)
-scale = Vector2(0.25, 0.25)
+[node name="CirclingShark5" parent="." unique_id=932279598 instance=ExtResource("5_iw2mh")]
+position = Vector2(418, 470)
+circle = true
+seconds = 7
+
+[node name="CirclingShark4" parent="." unique_id=1259367454 instance=ExtResource("5_iw2mh")]
+position = Vector2(4363, 273)
+circle = true
+seconds = 7
 
 [node name="Bubble2" parent="." unique_id=539215399 instance=ExtResource("7_3iwpl")]
 position = Vector2(1182, 671)
 scale = Vector2(0.25, 0.25)
 
 [node name="Bubble3" parent="." unique_id=1584288083 instance=ExtResource("7_3iwpl")]
-position = Vector2(2167, 505)
+position = Vector2(2127, 488)
 scale = Vector2(0.25, 0.25)
 
 [node name="Bubble4" parent="." unique_id=75502247 instance=ExtResource("7_3iwpl")]
@@ -188,7 +210,7 @@ position = Vector2(2908, 701)
 scale = Vector2(0.25, 0.25)
 
 [node name="Bubble5" parent="." unique_id=369798960 instance=ExtResource("7_3iwpl")]
-position = Vector2(3710, 318)
+position = Vector2(3581, 427)
 scale = Vector2(0.25, 0.25)
 
 [node name="Bubble6" parent="." unique_id=1517157739 instance=ExtResource("7_3iwpl")]

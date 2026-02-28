@@ -1,0 +1,201 @@
+[gd_scene format=4 uid="uid://bd5w8184lxg3q"]
+
+[ext_resource type="PackedScene" uid="uid://cun06111wnqn1" path="res://scenes/parallax.tscn" id="1_5a2uh"]
+[ext_resource type="PackedScene" uid="uid://chh3x1guqscc2" path="res://scenes/player.tscn" id="2_xuf1b"]
+[ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="3_uxrqx"]
+[ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="4_dpr5n"]
+[ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="5_oxm3q"]
+[ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="6_bbv6a"]
+[ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="7_pjxhx"]
+[ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="8_045en"]
+
+[sub_resource type="GDScript" id="GDScript_wq5kw"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+	
+
+
+func _on_body_entered(_body: Node2D) -> void:
+	get_tree().change_scene_to_file(\"res://scenes/Level1.tscn\")
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3ham"]
+radius = 25.847391
+
+[sub_resource type="Curve2D" id="Curve2D_rn4u1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -79.72845, -4.0630417, 0.5818939, 0.2958603, -0.5818939, -0.2958603, 172.46017, -5, 0, 0, 0, 0, -79.72845, -4.0630417)
+}
+point_count = 3
+
+[node name="Level0" type="Node2D" unique_id=2047788421]
+
+[node name="Parallax" parent="." unique_id=1852961584 instance=ExtResource("1_5a2uh")]
+
+[node name="Player" parent="." unique_id=1465391525 instance=ExtResource("2_xuf1b")]
+position = Vector2(123, -160)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1141350354]
+position = Vector2(449, 298)
+scale = Vector2(1.0089285, 1)
+script = SubResource("GDScript_wq5kw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=851886496]
+position = Vector2(2559.1506, -217)
+shape = SubResource("CircleShape2D_e3ham")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=809145752]
+position = Vector2(2559.1504, -219)
+scale = Vector2(0.5575221, 0.5546874)
+texture = ExtResource("3_uxrqx")
+
+[node name="two point path shark" type="Path2D" parent="." unique_id=1405095463]
+position = Vector2(520, 130)
+scale = Vector2(1.0089285, 1)
+curve = SubResource("Curve2D_rn4u1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="two point path shark" unique_id=877389433]
+position = Vector2(-79.72845, -4.0630417)
+rotation = 0.0018026861
+rotates = false
+script = ExtResource("4_dpr5n")
+
+[node name="Shark" parent="two point path shark/PathFollow2D" unique_id=14928866 instance=ExtResource("5_oxm3q")]
+position = Vector2(-0.0791589, -0.32279348)
+scale = Vector2(-1, 1)
+
+[node name="Bubble" parent="." unique_id=1362069736 instance=ExtResource("6_bbv6a")]
+position = Vector2(1231, 68)
+
+[node name="BubbleParticle" type="CPUParticles2D" parent="." unique_id=846594299]
+emitting = false
+amount = 16
+texture = ExtResource("7_pjxhx")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 86.59
+gravity = Vector2(0, 100)
+initial_velocity_max = 159.57
+angular_velocity_max = 99.57
+
+[node name="TileMap" parent="." unique_id=71163937 instance=ExtResource("8_045en")]
+tile_map_data = PackedByteArray("AAAAAPv/AAACACUAAAAAAPz/AAACACUAAAAAAP3/AAACACUAAAAAAP7/AAACACUAAAAAAP//AAACACUAAAABAP//AAACACUAAAACAP//AAACACUAAAADAP//AAACACUAAAAEAP//AAACACUAAAAFAP//AAACACUAAAAGAP//AAACACUAAAAHAP//AAACACUAAAAIAP//AAACACUAAAAJAP//AAACACUAAAAKAP//AAACACUAAAALAP//AAACACUAAAAMAP//AAACACUAAAANAP//AAACACUAAAAOAP//AAACACUAAAAPAP//AAACACUAAAAQAP//AAACACUAAAARAP//AAACACUAAAASAP//AAACACUAAAATAP//AAACACUAAAAUAP//AAACACUAAAAVAP//AAACACUAAAAWAP//AAACACUAAAAXAP//AAACACUAAAAYAP//AAACACUAAAAZAP//AAACACUAAAAaAP//AAACACUAAAAbAP//AAACACUAAAAcAP//AAACACUAAAAdAP//AAACACUAAAAeAP//AAACACUAAAAfAP//AAACACUAAAAgAP//AAACACUAAAAhAP//AAACACUAAAAiAP//AAACACUAAAAjAP//AAACACUAAAAkAP//AAACACUAAAAlAP//AAACACUAAAAmAP//AAACACUAAAAnAP//AAACACUAAAAoAP//AAACACUAAAApAP//AAACACUAAAApAAAAAAACACUAAAApAAEAAAACACUAAAAtAPz/AAACACUAAAAtAPv/AAACACUAAAApAAIAAAACACUAAAAqAAIAAAACACUAAAArAAIAAAACACUAAAAsAAIAAAACACUAAAAtAAIAAAACACUAAAAuAAIAAAACACUAAAAvAAIAAAACACUAAAAwAAIAAAACACUAAAAxAAIAAAACACUAAAAyAAIAAAACACUAAAAzAAIAAAACACUAAAA0AAIAAAACACUAAAA1AAIAAAACACUAAAA2AAIAAAACACUAAAA3AAIAAAACACUAAAA4AAIAAAACACUAAAA5AAIAAAACACUAAAA6AAIAAAACACUAAAA7AAIAAAACACUAAAA8AAIAAAACACUAAAA9AAIAAAACACUAAAA+AAIAAAACACUAAAA/AAIAAAACACUAAABAAAIAAAACACUAAABBAAIAAAACACUAAABCAAIAAAACACUAAABDAAIAAAACACUAAABEAAIAAAACACUAAABFAAIAAAACACUAAABGAAIAAAACACUAAABHAAIAAAACACUAAABIAAIAAAACACUAAABJAAIAAAACACUAAABKAAIAAAACACUAAABLAAIAAAACACUAAABMAAIAAAACACUAAAA5AP3/AAACACUAAAA6AP3/AAACACUAAAA7AP3/AAACACUAAAA8AP3/AAACACUAAAA9AP3/AAACACUAAAA+AP3/AAACACUAAAA/AP3/AAACACUAAABAAP3/AAACACUAAABBAP3/AAACACUAAABCAP3/AAACACUAAABDAP3/AAACACUAAAAtAP3/AAACACUAAAAuAP3/AAACACUAAAAvAP3/AAACACUAAAAwAP3/AAACACUAAAAxAP3/AAACACUAAAAyAP3/AAACACUAAAAzAP3/AAACACUAAAA0AP3/AAACACUAAAA1AP3/AAACACUAAAA2AP3/AAACACUAAAA3AP3/AAACACUAAAA4AP3/AAACACUAAABEAP3/AAACACUAAABFAP3/AAACACUAAABGAP3/AAACACUAAABHAP3/AAACACUAAABIAP3/AAACACUAAABJAP3/AAACACUAAABKAP3/AAACACUAAABLAP3/AAACACUAAABMAP3/AAACACUAAABNAP3/AAACACUAAABOAP3/AAACACUAAABPAP3/AAACACUAAABQAP3/AAACACUAAABRAP3/AAACACUAAABSAP3/AAACACUAAABTAP3/AAACACUAAABUAP3/AAACACUAAABVAP3/AAACACUAAABWAP3/AAACACUAAABXAP3/AAACACUAAABYAP3/AAACACUAAABZAP3/AAACACUAAABaAP3/AAACACUAAABNAAIAAAACACUAAABOAAIAAAACACUAAABPAAIAAAACACUAAABQAAIAAAACACUAAABQAAMAAAACACUAAABQAAQAAAACACUAAABQAAUAAAACACUAAABQAAYAAAACACUAAABRAAYAAAACACUAAABSAAYAAAACACUAAABTAAYAAAACACUAAABUAAYAAAACACUAAABVAAYAAAACACUAAABWAAYAAAACACUAAABXAAYAAAACACUAAABYAAYAAAACACUAAABZAAYAAAACACUAAABaAAYAAAACACUAAABbAAYAAAACACUAAABcAAYAAAACACUAAABdAAYAAAACACUAAABeAAYAAAACACUAAABbAP3/AAACACUAAABcAP3/AAACACUAAABdAP3/AAACACUAAABeAP3/AAACACUAAABfAAYAAAACACUAAABgAAYAAAACACUAAABgAAUAAAACACUAAABgAAEAAAACACUAAABgAAAAAAACACUAAABgAP//AAACACUAAABgAP7/AAACACUAAABgAP3/AAACACUAAABfAP3/AAACACUAAABgAAIAAAACACUAAABgAAMAAAACACUAAABgAAQAAAACACUAAAA=")
+
+[node name="CirclingShark" parent="." unique_id=638292415 instance=ExtResource("5_oxm3q")]
+position = Vector2(811, 113)
+scale = Vector2(0.5625, 0.5546874)
+circle = true
+seconds = 3
+
+[node name="Bubble2" parent="." unique_id=1286789054 instance=ExtResource("6_bbv6a")]
+position = Vector2(1513, 28)
+
+[node name="Bubble3" parent="." unique_id=624593164 instance=ExtResource("6_bbv6a")]
+position = Vector2(1607, 33)
+
+[node name="Bubble4" parent="." unique_id=1600038370 instance=ExtResource("6_bbv6a")]
+position = Vector2(1733, 32)
+
+[node name="Bubble5" parent="." unique_id=467730482 instance=ExtResource("6_bbv6a")]
+position = Vector2(1884, 36)
+
+[node name="Bubble6" parent="." unique_id=778145416 instance=ExtResource("6_bbv6a")]
+position = Vector2(2050, 42)
+
+[node name="Bubble7" parent="." unique_id=286129986 instance=ExtResource("6_bbv6a")]
+position = Vector2(2234, 36)
+
+[node name="Bubble8" parent="." unique_id=761595913 instance=ExtResource("6_bbv6a")]
+position = Vector2(2384, 36)
+
+[node name="Label9" type="Label" parent="." unique_id=524199870]
+offset_left = 174.0
+offset_top = -132.0
+offset_right = 435.0
+offset_bottom = -57.0
+text = "Move left with 'A'
+and move right with 'D' "
+
+[node name="Label8" type="Label" parent="." unique_id=708344311]
+offset_left = 1974.0
+offset_top = 97.0
+offset_right = 2565.0
+offset_bottom = 172.0
+text = "Press your left-mouse-button, to throw your trident.
+It will go from the fish to your mouse. Make sure to aim!
+And, it has a cooldown. 
+When you can see it on the back of your fish, you can use it again!"
+
+[node name="Label7" type="Label" parent="." unique_id=1073434454]
+offset_left = 2622.0
+offset_top = 115.0
+offset_right = 3173.0
+offset_bottom = 190.0
+text = "You can wallkick if you go to a wall,
+press the button to go trough it, and then press 'space'."
+
+[node name="Label6" type="Label" parent="." unique_id=1892316332]
+offset_left = 1729.0
+offset_top = 101.0
+offset_right = 2320.0
+offset_bottom = 176.0
+text = "Press 'shift' to boost a little
+(this costs some oxygen!)"
+
+[node name="Label" type="Label" parent="." unique_id=616818939]
+offset_left = 26.0
+offset_top = 34.0
+offset_right = 287.0
+offset_bottom = 109.0
+text = "Hello, and welcome!
+I put you above water,
+because drowning is a big hazard!"
+
+[node name="Label2" type="Label" parent="." unique_id=1281448159]
+offset_left = 341.0
+offset_top = 20.0
+offset_right = 796.0
+offset_bottom = 95.0
+text = "This is a shark.
+It can go between two points, or in a circle.
+If he touches you, well, you know what happens, don't you."
+
+[node name="Label5" type="Label" parent="." unique_id=709812611]
+offset_left = 1355.0
+offset_top = 104.0
+offset_right = 1946.0
+offset_bottom = 179.0
+text = "Press 'S' to go down (faster than gravity),
+and make sure you SPAM 'W' when going up!"
+
+[node name="Label4" type="Label" parent="." unique_id=928414893]
+offset_left = 1024.0
+offset_top = 112.0
+offset_right = 1615.0
+offset_bottom = 187.0
+text = "Now let's jump in the water!
+Make sure you surface once in a while!"
+
+[node name="Label3" type="Label" parent="." unique_id=1438294100]
+offset_left = 823.0
+offset_top = 19.0
+offset_right = 1414.0
+offset_bottom = 94.0
+text = "Because you can't always surface,
+there are some bubbles scattered around.
+You can go trough them, or throw your trident."
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

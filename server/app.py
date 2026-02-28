@@ -60,14 +60,22 @@ def read_scores():
         return []
 
 def write_scores(scores):
-    """Thread-safe score writing with file locking"""
-    # Sort by time (lower is better) and keep top MAX_SCORES
-    scores.sort(key=lambda x: x.get('time', 999999))
-    scores = scores[:MAX_SCORES]
+    """Keep top 100 scores per level"""
+    by_level = {}
+    for s in scores:
+        lvl = s.get('name', 'Unknown')
+        if lvl not in by_level: by_level[lvl] = []
+        by_level[lvl].append(s)
+
+    new_scores = []
+    for lvl in by_level:
+        # Sort level scores by time (lower is better)
+        by_level[lvl].sort(key=lambda x: x.get('time', 999999))
+        new_scores.extend(by_level[lvl][:100])
 
     with open(SCORES_FILE + '.tmp', 'w') as f:
         fcntl.flock(f.fileno(), fcntl.LOCK_EX)
-        json.dump(scores, f)
+        json.dump(new_scores, f)
         f.flush()
         os.fsync(f.fileno())
         fcntl.flock(f.fileno(), fcntl.LOCK_UN)
@@ -130,7 +138,14 @@ def get_scores():
 @app.route('/leaderboard')
 def leaderboard_html():
     """Simple HTML leaderboard view"""
-    scores = read_scores()[:50]  # Top 50
+    scores = read_scores()
+    
+    levels = {}
+    for score in scores:
+        lvl = score.get('name', 'Unknown')
+        if lvl not in levels:
+            levels[lvl] = []
+        levels[lvl].append(score)
 
     html = """<!DOCTYPE html>
 <html>
@@ -139,53 +154,27 @@ def leaderboard_html():
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { font-family: monospace; max-width: 800px; margin: 20px auto; padding: 0 10px; background: #1a1a2e; color: #eee; }
-        h1 { color: #4ade80; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #333; }
-        th { color: #4ade80; }
-        tr:hover { background: #16213e; }
-        .rank { color: #888; }
-        .time { color: #4ade80; font-weight: bold; }
-        .date { color: #666; font-size: 0.9em; }
-        a { color: #4ade80; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        body { font-family: monospace; max-width: 600px; margin: 20px auto; padding: 0 10px; }
+        table { border-collapse: collapse; margin-bottom: 30px; width: 100%; }
+        th, td { padding: 8px; border-bottom: 1px solid #ccc; text-align: left; }
     </style>
 </head>
 <body>
-    <h1>🏆 Leaderboard</h1>
-    <p>Fastest times across all levels</p>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Level</th>
-                <th>Time</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Leaderboard</h1>
 """
 
-    for i, score in enumerate(scores, 1):
-        name = score.get('name', 'Unknown')
-        time = score.get('time', 0)
-        date = score.get('date', '')[:10]  # Just the date part
-        time_str = f"{time:.2f}s"
+    for lvl in sorted(levels.keys()):
+        html += f"    <h2>{lvl}</h2>\n    <table>\n        <tr><th>#</th><th>Time</th><th>Date</th></tr>\n"
+        lvl_scores = sorted(levels[lvl], key=lambda x: x.get('time', 999999))[:50]
+        
+        for i, score in enumerate(lvl_scores, 1):
+            time = score.get('time', 0)
+            date = score.get('date', '')[:10]
+            html += f"        <tr><td>{i}</td><td>{time:.2f}s</td><td>{date}</td></tr>\n"
+            
+        html += "    </table>\n"
 
-        html += f"""            <tr>
-                <td class="rank">{i}</td>
-                <td>{name}</td>
-                <td class="time">{time_str}</td>
-                <td class="date">{date}</td>
-            </tr>
-"""
-
-    html += """        </tbody>
-    </table>
-    <p style="margin-top: 30px; color: #666;">
-        <a href="https://save.temp.olio.ovh/scores">JSON API</a>
-    </p>
+    html += """    <p><a href="/scores">JSON API</a></p>
 </body>
 </html>"""
 

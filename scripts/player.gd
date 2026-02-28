@@ -174,10 +174,10 @@ func submit_score() -> void:
 		return
 	score_submitted = true
 
-	# Get level name from current scene
-	var level_name = get_tree().current_scene.name
+	# Get level name from filename (e.g. Level1)
+	var level_name = get_tree().current_scene.scene_file_path.get_file().get_basename()
 	var final_time = level_time
-	print("Player: trying to submit score: ", level_name, " time: ", final_time)
+	print("Player: trying to submit score for level: ", level_name, " time: ", final_time)
 
 	if has_node("/root/Leaderboard"):
 		print("Player: Found Leaderboard node")

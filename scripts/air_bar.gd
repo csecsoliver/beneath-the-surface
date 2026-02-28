@@ -31,6 +31,5 @@ func display_bar():
 
 func _on_player_lose_air(new_air: Variant) -> void:
 	air = new_air
-	print(new_air)
 	display_bar()
 	pass # Replace with function body.

@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-@export var seconds = 10;
+@onready var seconds = $Shark.seconds;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

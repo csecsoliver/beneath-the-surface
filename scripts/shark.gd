@@ -21,9 +21,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if flip_on_half_point:
 		timer += delta
-		if timer > float(seconds)/2:
+		var half = float(seconds)/2
+		if timer > half:
 			anim.scale.x *= -1;
-			timer -= float(seconds)/2
+			timer -= half
 	if circle:
 		rotation += delta*2*PI/seconds
 		anim.global_rotation = 0

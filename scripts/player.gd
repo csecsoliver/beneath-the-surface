@@ -13,10 +13,31 @@ const GRAVITY = 300.0
 var mouse_held: bool = true
 var air_timer: float = 0;
 var trident_timer: float = 0;
+var level_time: float = 0;
+var timer_label: Label
 
 signal lose_air(air) # amúgy ez bármilyen levegőváltozás, nem csak lose
 
+func _ready() -> void:
+	timer_label = Label.new()
+	timer_label.name = "TimerLabel"
+	$CanvasLayer.add_child(timer_label)
+	timer_label.add_theme_font_size_override("font_size", 24)
+	
+	var system_font = SystemFont.new()
+	system_font.font_names = ["Monospace"]
+	timer_label.add_theme_font_override("font", system_font)
+	
+	timer_label.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT, Control.PRESET_MODE_MINSIZE, 20)
+	timer_label.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+
 func _process(delta: float) -> void:
+	level_time += delta
+	var minutes = int(level_time / 60)
+	var seconds = int(level_time) % 60
+	var msecs = int(fmod(level_time * 1000, 1000))
+	timer_label.text = "Time: %02d:%02d.%03d" % [minutes, seconds, msecs]
+	
 	# animations
 	if abs(velocity.y) < 20:
 		%PlayerSprite.animation = "idle"

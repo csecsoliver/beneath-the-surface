@@ -18,15 +18,8 @@ func _process(delta: float) -> void:
 	pass
 
 func display_bar():
-	var i = 0
-	for e in list:
-		if i == air: break
-		e.visible = true
-		i+=1
-	for e in list:
-		if i > 9: break
-		e.visible = false
-		i+=1
+	for i in range(list.size()):
+		list[i].visible = i >= (list.size() - air)
 
 
 func _on_player_lose_air(new_air: Variant) -> void:

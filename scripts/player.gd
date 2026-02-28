@@ -16,6 +16,7 @@ var trident_timer: float = 0;
 var level_time: float = 0;
 var timer_label: Label
 var dying: bool = false
+var score_submitted: bool = false
 
 signal lose_air(air) # amúgy ez bármilyen levegőváltozás, nem csak lose
 
@@ -161,3 +162,21 @@ func shoot():
 	# Add to root scene so it doesn't move with the player
 	get_tree().root.add_child(projectile)
 	$Throw.play()
+
+func submit_score() -> void:
+	if score_submitted:
+		return
+	score_submitted = true
+
+	# Get level name from current scene
+	var level_name = get_tree().current_scene.name
+	var final_time = level_time
+
+	# Submit silently (fire and forget, no await)
+	if has_node("/root/Leaderboard"):
+		var leaderboard = get_node("/root/Leaderboard")
+		if leaderboard.has_method("submit_score"):
+			leaderboard.submit_score(level_name, final_time)
+
+func finish_level():
+	submit_score()

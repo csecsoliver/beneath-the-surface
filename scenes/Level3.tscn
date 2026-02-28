@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cun06111wnqn1" path="res://scenes/parallax.tscn" id="1_fxntt"]
 [ext_resource type="PackedScene" uid="uid://chh3x1guqscc2" path="res://scenes/player.tscn" id="2_3iwpl"]
-[ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="3_kpqvn"]
+[ext_resource type="SpriteFrames" uid="uid://b0u18s36pj4ub" path="res://new_sprite_frames.tres" id="3_kpqvn"]
 [ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="4_thei6"]
 [ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="5_iw2mh"]
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="6_opw0y"]
@@ -56,10 +56,12 @@ script = SubResource("GDScript_g7sqe")
 position = Vector2(440.07083, 407)
 shape = SubResource("CircleShape2D_turoa")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1867065168]
-position = Vector2(441.06198, 410)
-scale = Vector2(0.5575218, 0.53125)
-texture = ExtResource("3_kpqvn")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=620175618]
+position = Vector2(442.05322, 409)
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("3_kpqvn")
+autoplay = "default"
+frame_progress = 0.29928818
 
 [node name="two point path shark" type="Path2D" parent="." unique_id=2104133907]
 position = Vector2(737, 559)

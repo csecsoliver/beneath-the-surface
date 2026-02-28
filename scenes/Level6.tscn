@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://bd67x47xao4dy"]
 
 [ext_resource type="PackedScene" uid="uid://chh3x1guqscc2" path="res://scenes/player.tscn" id="1_h8x1o"]
-[ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="2_jht4o"]
 [ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="3_jjfef"]
 [ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="4_ogagg"]
 [ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="5_g67q2"]
 [ext_resource type="PackedScene" uid="uid://cun06111wnqn1" path="res://scenes/parallax.tscn" id="6_jht4o"]
+[ext_resource type="SpriteFrames" uid="uid://b0u18s36pj4ub" path="res://new_sprite_frames.tres" id="6_ogagg"]
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="7_jjfef"]
 [ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="8_ogagg"]
 
@@ -133,10 +133,12 @@ script = SubResource("GDScript_iunjm")
 position = Vector2(440.07083, 407)
 shape = SubResource("CircleShape2D_tyotf")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1557425735]
-position = Vector2(441.06198, 410)
-scale = Vector2(0.5575218, 0.53125)
-texture = ExtResource("2_jht4o")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1978564648]
+position = Vector2(438.0885, 414)
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("6_ogagg")
+autoplay = "default"
+frame_progress = 0.29928818
 
 [node name="Player" parent="." unique_id=1465391525 instance=ExtResource("1_h8x1o")]
 position = Vector2(123, -160)

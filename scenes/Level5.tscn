@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="2_quee7"]
 [ext_resource type="PackedScene" uid="uid://chh3x1guqscc2" path="res://scenes/player.tscn" id="3_thj0k"]
 [ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="4_quee7"]
-[ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="5_thj0k"]
+[ext_resource type="SpriteFrames" uid="uid://b0u18s36pj4ub" path="res://new_sprite_frames.tres" id="5_cmd5o"]
 [ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="6_cmd5o"]
 
 [sub_resource type="GDScript" id="GDScript_cmd5o"]
@@ -57,16 +57,19 @@ script = SubResource("GDScript_cmd5o")
 position = Vector2(-2.973938, 0)
 shape = SubResource("CircleShape2D_cfoq6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=295418204]
-position = Vector2(4.9553223, 1)
-scale = Vector2(0.5575218, 0.53125)
-texture = ExtResource("5_thj0k")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=1351086272]
+position = Vector2(3.964447, 2)
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("5_cmd5o")
+autoplay = "default"
+frame_progress = 0.29928818
 
 [node name="Bubble3" parent="." unique_id=396033032 instance=ExtResource("4_quee7")]
 position = Vector2(2638, 572)
 
 [node name="Bubble4" parent="." unique_id=1272051371 instance=ExtResource("4_quee7")]
 position = Vector2(1967, 578)
+
 [node name="BubbleParticle" type="CPUParticles2D" parent="." unique_id=2042622694]
 emitting = false
 amount = 16

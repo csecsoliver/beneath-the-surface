@@ -4,6 +4,7 @@ var direction: Vector2
 @export var speed: int = 100
 @export var invincibility_timer: float = 0.1
 @export var vanish_timer: float = 9.99
+@export var trident_air_add: int = 3
 
 var timer: float = 0
 

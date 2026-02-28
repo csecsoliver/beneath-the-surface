@@ -163,20 +163,29 @@ func shoot():
 	get_tree().root.add_child(projectile)
 	$Throw.play()
 
+func finish_level():
+	submit_score()
+	# Wait briefly so the HTTP request fires before the scene unloads.
+	await get_tree().create_timer(0.2).timeout
+
 func submit_score() -> void:
 	if score_submitted:
+		print("Player: score already submitted, ignoring.")
 		return
 	score_submitted = true
 
 	# Get level name from current scene
 	var level_name = get_tree().current_scene.name
 	var final_time = level_time
+	print("Player: trying to submit score: ", level_name, " time: ", final_time)
 
-	# Submit silently (fire and forget, no await)
 	if has_node("/root/Leaderboard"):
+		print("Player: Found Leaderboard node")
 		var leaderboard = get_node("/root/Leaderboard")
 		if leaderboard.has_method("submit_score"):
+			print("Player: Leaderboard has submit_score method, calling it.")
 			leaderboard.submit_score(level_name, final_time)
-
-func finish_level():
-	submit_score()
+		else:
+			print("Player ERROR: Leaderboard missing submit_score method")
+	else:
+		print("Player ERROR: Could not find /root/Leaderboard node!")

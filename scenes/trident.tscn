@@ -13,15 +13,15 @@ scale = Vector2(3, 3)
 script = ExtResource("1_557qm")
 speed = 700
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=715051184]
-position = Vector2(-0.019625347, -1.3529587)
-rotation = -0.7853982
-texture = ExtResource("1_v6yn2")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1278629052]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=335486890]
 position = Vector2(-0.019625464, -0.019625306)
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1864270336]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1864270336]
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_557qm")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=715051184]
+position = Vector2(1.17346644e-07, -1.3333334)
+rotation = -0.78539824
+texture = ExtResource("1_v6yn2")

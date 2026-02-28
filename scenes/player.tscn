@@ -297,6 +297,10 @@ animation = &"up"
 [node name="Trident" parent="PlayerSprite" unique_id=1359295957 instance=ExtResource("2_y4r1p")]
 rotation = 0.24609143
 scale = Vector2(1.5, 1.5)
+script = null
+
+[node name="CollisionShape2D" parent="PlayerSprite/Trident/CharacterBody2D" parent_id_path=PackedInt32Array(1359295957, 335486890) index="0" unique_id=1864270336]
+disabled = true
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1110791031]
 position_smoothing_enabled = true
@@ -312,3 +316,4 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="lose_air" from="." to="CanvasLayer/AirBar" method="_on_player_lose_air"]
+[editable path="PlayerSprite/Trident"]

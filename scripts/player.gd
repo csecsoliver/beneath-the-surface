@@ -70,7 +70,6 @@ func _process(delta: float) -> void:
 	air_timer += delta
 	if !can_trident: trident_timer += delta
 	
-	#print(position.y, air_timer > max_air_timer/10)
 	if position.y > 0:
 		if air_timer > max_air_timer/10.0:
 			AIR-=1
@@ -122,6 +121,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = JUMP_VELOCITY*2.4 * -direction
 		AIR -= 1
 		lose_air.emit(AIR)
+		$DashParticle.emitting = true
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)

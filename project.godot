@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MusicManager="*uid://dhts76ltbbtx5"
+MusicManager2="*uid://ds7ypgjo6fdi5"
 
 [input]
 

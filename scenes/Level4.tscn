@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="5_ty0q0"]
 [ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="6_2xrsv"]
 [ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="7_ylbeq"]
+[ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="8_eoiwq"]
 
 [sub_resource type="GDScript" id="GDScript_gduov"]
 script/source = "extends Area2D
@@ -52,6 +53,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAACACUAAAAAAAEAAAACACUAAAAAAAIAAAACACU
 
 [node name="Player" parent="." unique_id=1465391525 instance=ExtResource("3_bejdq")]
 position = Vector2(123, -160)
+
+[node name="PlayerCamera" parent="Player" index="2" unique_id=1110791031]
+limit_bottom = 930
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1419531502]
 position = Vector2(449, 298)
@@ -172,6 +176,23 @@ position = Vector2(275, 427)
 circle = true
 seconds = 3
 
+[node name="BubbleParticle" type="CPUParticles2D" parent="." unique_id=994037956]
+emitting = false
+amount = 16
+texture = ExtResource("8_eoiwq")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 86.59
+gravity = Vector2(0, 100)
+initial_velocity_max = 159.57
+angular_velocity_max = 99.57
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 
 [editable path="Parallax"]
+[editable path="Player"]
+[editable path="Player/PlayerSprite/Trident"]

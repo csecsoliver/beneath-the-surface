@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="5_g67q2"]
 [ext_resource type="PackedScene" uid="uid://cun06111wnqn1" path="res://scenes/parallax.tscn" id="6_jht4o"]
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="7_jjfef"]
+[ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="8_ogagg"]
 
 [sub_resource type="Curve2D" id="Curve2D_5a2g5"]
 _data = {
@@ -140,6 +141,21 @@ position = Vector2(123, -160)
 
 [node name="PlayerCamera" parent="Player" index="2" unique_id=1110791031]
 limit_bottom = 950
+
+[node name="BubbleParticle" type="CPUParticles2D" parent="." unique_id=1934839570]
+emitting = false
+amount = 16
+texture = ExtResource("8_ogagg")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 86.59
+gravity = Vector2(0, 100)
+initial_velocity_max = 159.57
+angular_velocity_max = 99.57
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 

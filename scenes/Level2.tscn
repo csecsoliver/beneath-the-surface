@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="5_v8268"]
 [ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="6_rcugv"]
 [ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="7_qwp14"]
+[ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="8_xpq2v"]
 
 [sub_resource type="GDScript" id="GDScript_76388"]
 script/source = "extends Area2D
@@ -135,5 +136,20 @@ position = Vector2(403, 411.00003)
 
 [node name="Bubble3" parent="." unique_id=1534356114 instance=ExtResource("7_qwp14")]
 position = Vector2(772, 335)
+
+[node name="BubbleParticle" type="CPUParticles2D" parent="." unique_id=1258410560]
+emitting = false
+amount = 16
+texture = ExtResource("8_xpq2v")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 86.59
+gravity = Vector2(0, 100)
+initial_velocity_max = 159.57
+angular_velocity_max = 99.57
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

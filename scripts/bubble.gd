@@ -1,5 +1,7 @@
+
 extends Area2D
 
+@onready var player = get_tree().current_scene.get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,6 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for i in get_overlapping_bodies():
 		if i.has_meta("player"):
-			print("Bubble touched player, adding air")
 			i.add_air(5)
 			queue_free()
+		if i.has_meta("trident"):
+			player.add_air(3)
+			self.queue_free()

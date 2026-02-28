@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://h8nf5whtpn74" path="res://sprites/fish/Idling Actions/normalidle.png" id="7_02ce8"]
 [ext_resource type="Texture2D" uid="uid://kwjy6fnvrjwm" path="res://sprites/fish/Normal Actions/normalswim.png" id="8_k6j2k"]
 [ext_resource type="Texture2D" uid="uid://fsjhfhqxayo0" path="res://sprites/fish/Normal Actions/normalswimdiagup.png" id="9_12fny"]
-[ext_resource type="PackedScene" uid="uid://drvd42ixgbq2o" path="res://scenes/AirBar.tscn" id="11_d2wvv"]
+[ext_resource type="PackedScene" path="res://scenes/AirBar.tscn" id="11_d2wvv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 
@@ -284,6 +284,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" unique_id=1465391525]
 script = ExtResource("1_m3dpg")
 projectile_scene = ExtResource("2_y4r1p")
+metadata/player = true
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=2100305239]
 shape = SubResource("CircleShape2D_smehm")
@@ -309,3 +310,5 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[connection signal="lose_air" from="." to="CanvasLayer/AirBar" method="_on_player_lose_air"]

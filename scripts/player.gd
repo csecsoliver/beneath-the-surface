@@ -7,7 +7,7 @@ var can_trident = true
 
 const SPEED = 10.0
 const MAX_SPEED = 200.0 # sideways. double of terminal velocity
-const JUMP_VELOCITY = -150.0
+const JUMP_VELOCITY = -200.0
 const GRAVITY = 300.0
 
 var mouse_held: bool = true
@@ -48,13 +48,20 @@ func _process(delta: float) -> void:
 	air_timer += delta
 	if !can_trident: trident_timer += delta
 	
-	if air_timer > max_air_timer/10:
-		AIR-=1
-		if AIR == 0:
-			print("death")
-			AIR = 10
+	#print(position.y, air_timer > max_air_timer/10)
+	if position.y > 0:
+		if air_timer > max_air_timer/10.0:
+			AIR-=1
+			air_timer = 0
+			lose_air.emit(AIR)
+			if AIR <= 0:
+				#print("death")
+				#AIR = 10
+				get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
+	else:
+		AIR = 10
 		lose_air.emit(AIR)
-		air_timer -= max_air_timer/10
+	
 	if trident_timer > max_trident_timer:
 		can_trident = true
 		$PlayerSprite/Trident.visible = true
@@ -79,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, MAX_SPEED*0.5, SPEED)
 
 	# Handle jump.
-	if Input.is_action_just_pressed("move_up"):
+	if Input.is_action_just_pressed("move_up") and position.y > 0:
 		velocity.y = JUMP_VELOCITY
 		# make it go faster if jumping
 		if direction and abs(velocity.x) < MAX_SPEED * 3:
@@ -87,6 +94,12 @@ func _physics_process(delta: float) -> void:
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		if collision.get_collider().get_parent().has_meta("shark"):
+			AIR = 0
+			lose_air.emit(AIR)
+		if collision.get_collider().has_meta("bubble"):
+			AIR += 5
+			lose_air.emit(AIR)
 		var normal = collision.get_normal()
 		if abs(normal.x) > 0.5:
 			if normal.x > 0 and Input.is_action_just_pressed("move_kick"):

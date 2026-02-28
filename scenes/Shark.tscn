@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5c60y4sbapxb"]
 
 [ext_resource type="Texture2D" uid="uid://c4lbjk2mxl6ge" path="res://sprites/shark/Shark-Sheet.png" id="1_2066b"]
-[ext_resource type="Script" path="res://scripts/shark.gd" id="1_pd6do"]
+[ext_resource type="Script" uid="uid://bdl6omg2h6sc2" path="res://scripts/shark.gd" id="1_pd6do"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pd6do"]
 radius = 26.88
@@ -73,6 +73,7 @@ animations = [{
 
 [node name="Shark" type="Node2D" unique_id=14928866]
 script = ExtResource("1_pd6do")
+metadata/shark = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1017520103]
 

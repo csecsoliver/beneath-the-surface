@@ -1,17 +1,19 @@
-[gd_scene format=3 uid="uid://cm3hdiuobgrry"]
+[gd_scene format=3 uid="uid://6slrdyniyw5o"]
 
-[ext_resource type="Texture2D" uid="uid://cs34ctv1lymsv" path="res://sprites/bubbles_1.png" id="1_pmi0y"]
+[ext_resource type="Texture2D" uid="uid://cs34ctv1lymsv" path="res://sprites/bubbles.png" id="1_pmi0y"]
+[ext_resource type="Script" uid="uid://6lshjef5nxa0" path="res://scripts/bubble.gd" id="1_pvjwk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmi0y"]
 radius = 128.41339
 
-[node name="Bubble" type="Node2D" unique_id=597424633]
+[node name="Bubble" type="Area2D" unique_id=1362069736]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_pvjwk")
+metadata/bubble = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=55613939]
+shape = SubResource("CircleShape2D_pmi0y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1118504845]
 texture = ExtResource("1_pmi0y")
 offset = Vector2(30, -70)
-
-[node name="Area2D" type="Area2D" parent="." unique_id=252061344]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=55613939]
-shape = SubResource("CircleShape2D_pmi0y")

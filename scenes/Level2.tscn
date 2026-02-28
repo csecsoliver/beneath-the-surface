@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c3opcahusdxfy" path="res://scripts/follow_path.gd" id="4_0jmjk"]
 [ext_resource type="PackedScene" uid="uid://5c60y4sbapxb" path="res://scenes/Shark.tscn" id="5_v8268"]
 [ext_resource type="Texture2D" uid="uid://cndnmvj7vxlc6" path="res://icon.svg" id="6_rcugv"]
+[ext_resource type="PackedScene" uid="uid://6slrdyniyw5o" path="res://scenes/Bubble.tscn" id="7_qwp14"]
 
 [sub_resource type="GDScript" id="GDScript_76388"]
 script/source = "extends Area2D
@@ -117,7 +118,7 @@ scale = Vector2(1.0089285, 1)
 curve = SubResource("Curve2D_4p0dt")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="two point path shark4" unique_id=1694066263]
-position = Vector2(188.3186, 307.00003)
+position = Vector2(183.36285, 310)
 rotation = 0.0018026861
 rotates = false
 script = ExtResource("4_0jmjk")
@@ -125,5 +126,11 @@ script = ExtResource("4_0jmjk")
 [node name="Shark" parent="two point path shark4/PathFollow2D" unique_id=1289535624 instance=ExtResource("5_v8268")]
 position = Vector2(-0.0791589, -0.32279348)
 scale = Vector2(0.945, 0.96)
+
+[node name="Bubble" parent="." unique_id=597424633 instance=ExtResource("7_qwp14")]
+position = Vector2(1954, 489)
+
+[node name="Bubble2" parent="." unique_id=1362069736 instance=ExtResource("7_qwp14")]
+position = Vector2(605.00006, 569.99994)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

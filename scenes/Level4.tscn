@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://xb31dsnhj8de"]
+[gd_scene format=4 uid="uid://cqutdo0p5e63g"]
 
 [ext_resource type="PackedScene" uid="uid://cun06111wnqn1" path="res://scenes/parallax.tscn" id="1_p7dpe"]
 [ext_resource type="PackedScene" uid="uid://cxryppcswp36y" path="res://scenes/tile_map.tscn" id="2_eoiwq"]

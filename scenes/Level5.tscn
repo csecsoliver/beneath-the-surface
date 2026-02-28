@@ -62,4 +62,7 @@ texture = ExtResource("5_thj0k")
 [node name="Bubble3" parent="." unique_id=396033032 instance=ExtResource("4_quee7")]
 position = Vector2(2638, 572)
 
+[node name="Bubble4" parent="." unique_id=1272051371 instance=ExtResource("4_quee7")]
+position = Vector2(1967, 578)
+
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

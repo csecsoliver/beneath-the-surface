@@ -12,7 +12,6 @@
 [node name="Parallax" type="Node2D" unique_id=1852961584]
 
 [node name="parallax-1" type="Node2D" parent="." unique_id=1103408118]
-visible = false
 
 [node name="surface" type="Parallax2D" parent="parallax-1" unique_id=205836938]
 scale = Vector2(4, 4)
@@ -57,13 +56,15 @@ texture = ExtResource("4_muem4")
 centered = false
 
 [node name="parallax-2" type="Node2D" parent="." unique_id=1874628584]
+visible = false
 
-[node name="Parallax2D" type="Parallax2D" parent="parallax-2" unique_id=350190193]
-repeat_size = Vector2(256, 0)
+[node name="sky" type="Parallax2D" parent="parallax-2" unique_id=350190193]
+repeat_size = Vector2(512, 0)
 repeat_times = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="parallax-2/Parallax2D" unique_id=1383935532]
+[node name="Sprite2D" type="Sprite2D" parent="parallax-2/sky" unique_id=1383935532]
 position = Vector2(129, 228)
+scale = Vector2(2, 1)
 texture = ExtResource("5_356xm")
 
 [node name="surface" type="Parallax2D" parent="parallax-2" unique_id=1518650219]

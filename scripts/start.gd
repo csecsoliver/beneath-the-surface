@@ -12,5 +12,5 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	MusicManager.play_music()
-	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
+	MusicManager2.play_music()
+	get_tree().change_scene_to_file("res://scenes/Level0.tscn")

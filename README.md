@@ -1,13 +1,13 @@
 # beneath-the-surface
-Like mario water levels. Wall jump. Air running out -> drown. Maybe checkpoints.
+Inspired by mario water levels.
+Air running out -> drown.
+You have some access to the surface, to take some breaths
+Or you can find bubbles floating around.
+Wall jump.
+Dash using oxygen.
+You have a trident to avoid sharks
+You can also shoot bubbles, to reach some extra distance
 
-Kitérők, amivel tudsz extra levegőt venni, ami időveszteség, meg kell fontolni, hogy hol mész fel. Esetleg lehet fejleszeni az oxigéntankot.
-
-use oxygen tank as booster (boosts the opposite diretion the player is looking)
-
-random oxygen bubbles in weird places
-
-trident to collect fish. cooldown.
 ## Online Leaderboard
 
 This game has an online leaderboard server. See `server/README.md` for deployment instructions.

@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bbavqcp5pmjke" path="res://sounds/powerUp.wav" id="12_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://bgppfwync4lv7" path="res://sounds/Oops.mp3" id="13_jej6c"]
 [ext_resource type="AudioStream" uid="uid://c1cci58ahllg" path="res://sounds/Whiz.mp3" id="14_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://cvg1ttya24yq1" path="res://sprites/particle/bubble.png" id="15_oprun"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 
@@ -327,6 +328,20 @@ stream = ExtResource("13_jej6c")
 
 [node name="Throw" type="AudioStreamPlayer2D" parent="." unique_id=616432414]
 stream = ExtResource("14_f1ej7")
+
+[node name="DashParticle" type="CPUParticles2D" parent="." unique_id=217719729]
+emitting = false
+texture = ExtResource("15_oprun")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+spread = 86.59
+gravity = Vector2(0, 100)
+initial_velocity_max = 159.57
+angular_velocity_max = 99.57
 
 [connection signal="lose_air" from="." to="CanvasLayer/AirBar" method="_on_player_lose_air"]
 

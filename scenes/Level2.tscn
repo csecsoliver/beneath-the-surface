@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
+	get_tree().change_scene_to_file(\"res://scenes/Level4.tscn\")
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76388"]
@@ -132,5 +132,8 @@ position = Vector2(1954, 489)
 
 [node name="Bubble2" parent="." unique_id=1362069736 instance=ExtResource("7_qwp14")]
 position = Vector2(403, 411.00003)
+
+[node name="Bubble3" parent="." unique_id=1534356114 instance=ExtResource("7_qwp14")]
+position = Vector2(772, 335)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

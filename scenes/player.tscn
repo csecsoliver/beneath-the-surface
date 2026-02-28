@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://kwjy6fnvrjwm" path="res://sprites/fish/Normal Actions/normalswim.png" id="8_k6j2k"]
 [ext_resource type="Texture2D" uid="uid://fsjhfhqxayo0" path="res://sprites/fish/Normal Actions/normalswimdiagup.png" id="9_12fny"]
 [ext_resource type="PackedScene" uid="uid://drvd42ixgbq2o" path="res://scenes/AirBar.tscn" id="11_d2wvv"]
+[ext_resource type="AudioStream" uid="uid://bbavqcp5pmjke" path="res://sounds/powerUp.wav" id="12_3v2ag"]
+[ext_resource type="AudioStream" uid="uid://bgppfwync4lv7" path="res://sounds/Oops.mp3" id="13_jej6c"]
+[ext_resource type="AudioStream" uid="uid://c1cci58ahllg" path="res://sounds/Whiz.mp3" id="14_f1ej7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 
@@ -315,6 +318,15 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Air" type="AudioStreamPlayer2D" parent="." unique_id=23549067]
+stream = ExtResource("12_3v2ag")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="." unique_id=1206598326]
+stream = ExtResource("13_jej6c")
+
+[node name="Throw" type="AudioStreamPlayer2D" parent="." unique_id=616432414]
+stream = ExtResource("14_f1ej7")
 
 [connection signal="lose_air" from="." to="CanvasLayer/AirBar" method="_on_player_lose_air"]
 

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://h8nf5whtpn74" path="res://sprites/fish/Idling Actions/normalidle.png" id="7_02ce8"]
 [ext_resource type="Texture2D" uid="uid://kwjy6fnvrjwm" path="res://sprites/fish/Normal Actions/normalswim.png" id="8_k6j2k"]
 [ext_resource type="Texture2D" uid="uid://fsjhfhqxayo0" path="res://sprites/fish/Normal Actions/normalswimdiagup.png" id="9_12fny"]
+[ext_resource type="PackedScene" uid="uid://drvd42ixgbq2o" path="res://scenes/AirBar.tscn" id="11_d2wvv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 
@@ -299,3 +300,12 @@ scale = Vector2(1.5, 1.5)
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1110791031]
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=977003766]
+
+[node name="AirBar" parent="CanvasLayer" unique_id=2144031877 instance=ExtResource("11_d2wvv")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

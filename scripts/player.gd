@@ -15,6 +15,7 @@ var air_timer: float = 0;
 var trident_timer: float = 0;
 var level_time: float = 0;
 var timer_label: Label
+var dying: bool = false
 
 signal lose_air(air) # amúgy ez bármilyen levegőváltozás, nem csak lose
 
@@ -75,9 +76,12 @@ func _process(delta: float) -> void:
 			AIR-=1
 			air_timer = 0
 			lose_air.emit(AIR)
-			if AIR <= 0:
-				#print("death")
-				#AIR = 10
+			if AIR <= 0 and not dying:
+				dying = true
+				$Die.play()
+				set_physics_process(false)
+				visible = false
+				await $Die.finished
 				get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 	else:
 		AIR = 10
@@ -132,6 +136,7 @@ func _physics_process(delta: float) -> void:
 func add_air(air) :
 	AIR += air
 	lose_air.emit(AIR)
+	$Air.play()
 
 @export var projectile_scene: PackedScene
 func shoot():
@@ -149,3 +154,4 @@ func shoot():
 	
 	# Add to root scene so it doesn't move with the player
 	get_tree().root.add_child(projectile)
+	$Throw.play()

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dnybocqsi3s7q"]
+[gd_scene format=3 uid="uid://cun06111wnqn1"]
 
 [ext_resource type="Texture2D" uid="uid://dktvi1bx58n01" path="res://sprites/bg-2/far.png" id="2_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://ceg530qjaskbd" path="res://sprites/bg-2/OceanSurface.png" id="2_tipki"]
@@ -17,6 +17,7 @@ scale = Vector2(4, 4)
 scroll_offset = Vector2(0, 28)
 repeat_size = Vector2(256, 0)
 autoscroll = Vector2(20, 0)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="parallax-1/surface" unique_id=233731449]
 position = Vector2(-8.4703295e-22, -104.8)
@@ -28,6 +29,7 @@ centered = false
 scale = Vector2(4, 4)
 scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(256, 0)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="parallax-1/bg" unique_id=1381126492]
 texture = ExtResource("2_jkv2x")
@@ -37,6 +39,7 @@ centered = false
 scale = Vector2(4, 4)
 scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(256, 0)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="parallax-1/mg" unique_id=942692981]
 texture = ExtResource("3_jbj1t")
@@ -45,6 +48,7 @@ centered = false
 [node name="fg" type="Parallax2D" parent="parallax-1" unique_id=1754584990]
 scale = Vector2(4, 4)
 repeat_size = Vector2(512, 0)
+repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="parallax-1/fg" unique_id=816767124]
 texture = ExtResource("4_muem4")

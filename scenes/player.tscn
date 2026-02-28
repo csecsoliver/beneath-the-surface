@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx71cfkcmklrm" path="res://scripts/player.gd" id="1_m3dpg"]
 [ext_resource type="Texture2D" uid="uid://deubaiq34q8fb" path="res://sprites/fish/Normal Actions/normalchomp.png" id="2_f7jdm"]
+[ext_resource type="PackedScene" uid="uid://bv5mk58humv7e" path="res://scenes/trident.tscn" id="2_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://onhpo6arc3np" path="res://sprites/fish/Normal Actions/normaltiltdownchomp.PNG" id="3_nqgys"]
 [ext_resource type="Texture2D" uid="uid://mwmr0rs3pby6" path="res://sprites/fish/Normal Actions/normaltiltupchomp.png" id="4_c6dsb"]
 [ext_resource type="Texture2D" uid="uid://b8t6ac4uwlapm" path="res://sprites/fish/Normal Actions/Fishieouch.png" id="5_d7bii"]
@@ -281,6 +282,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1465391525]
 script = ExtResource("1_m3dpg")
+projectile_scene = ExtResource("2_y4r1p")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=2100305239]
 shape = SubResource("CircleShape2D_smehm")

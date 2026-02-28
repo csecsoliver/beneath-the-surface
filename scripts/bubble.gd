@@ -10,4 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for i in get_overlapping_bodies():
 		if i.has_meta("player"):
-			free()
+			i.add_air(5)
+			queue_free()

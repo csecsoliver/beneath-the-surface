@@ -97,9 +97,10 @@ func _physics_process(delta: float) -> void:
 		if collision.get_collider().get_parent().has_meta("shark"):
 			AIR = 0
 			lose_air.emit(AIR)
-		if collision.get_collider().has_meta("bubble"):
-			AIR += 5
-			lose_air.emit(AIR)
+		#if collision.get_collider().has_meta("bubble"):
+			#print("air")
+			#AIR += 5
+			#lose_air.emit(AIR)
 		var normal = collision.get_normal()
 		if abs(normal.x) > 0.5:
 			if normal.x > 0 and Input.is_action_just_pressed("move_kick"):
@@ -108,6 +109,10 @@ func _physics_process(delta: float) -> void:
 				velocity.x -= MAX_SPEED*2
 
 	move_and_slide()
+	
+func add_air(air) :
+	AIR += air
+	lose_air.emit(AIR)
 
 @export var projectile_scene: PackedScene
 func shoot():
